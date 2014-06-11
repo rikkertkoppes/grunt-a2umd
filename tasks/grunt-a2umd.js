@@ -5,6 +5,7 @@ var path = require('path');
 module.exports = function(grunt) {
     grunt.registerMultiTask('a2umd', 'wraps an amd module to also behave in global scope using esprima', function() {
         var template = this.data.template||path.join(__dirname, '..', 'templates', 'wrapper.hbs');
+        var options = this.options();
 
         this.files.forEach(function(f) {
             var src = f.src.filter(function(filepath) {
@@ -20,6 +21,9 @@ module.exports = function(grunt) {
                 try {
                     var src = grunt.file.read(fn);
                     var res = a2umd.parse(src);
+                    if (!res.amdName) {
+                        res.amdName = path.relative(options.baseUrl||'.',fn).replace(path.sep,'/');
+                    }
                     var tpl = fs.readFileSync(template,'utf8');
                     res = a2umd.wrap(res,tpl);
                     grunt.file.write(f.dest,res);

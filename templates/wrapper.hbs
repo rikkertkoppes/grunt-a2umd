@@ -2,6 +2,6 @@
     if(typeof define === 'function' && define.amd) {
         define({{#if amdName}}'{{amdName}}', {{/if}}[{{{dependencyPaths}}}], factory);
     } else {
-        root.{{globalName}} = factory({{{dependencyNames}}});
+        {{#if globalName}}root.{{globalName}} = factory({{{dependencyNames}}});{{else}}factory({{{dependencyNames}}});{{/if}}
     }
 }(this, {{{factorySrc}}}));

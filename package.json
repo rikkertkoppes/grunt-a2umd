@@ -1,5 +1,5 @@
 {
-  "name": "gruntumd",
+  "name": "grunt-a2umd",
   "version": "0.0.0",
   "description": "Converts umd to amd pattern",
   "main": "tasks/grunt-a2umd.js",

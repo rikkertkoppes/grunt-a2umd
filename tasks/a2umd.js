@@ -28,10 +28,7 @@ function parse(src,globalName) {
         return 'root.'+d.name;
     });
     globalName = globalName || (factory.id && factory.id.name);
-    var amdName = amd && amd.value;
-
-    assert(globalName,'expected factory to have a name or global alias given as second argument');
-
+    var amdName = (amd && amd.value);
 
     var factorySrc = src.substring(factory.range[0],factory.range[1]);
 
